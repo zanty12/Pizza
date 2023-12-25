@@ -11,6 +11,7 @@ public class PizaaMove : MonoBehaviour
     public float moveUpDistance = 1.0f;
     public float moveUpSpeed = 1.0f;
     private Vector3 startPosition;
+    public bool active = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,19 +22,23 @@ public class PizaaMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // オブジェクトのローカル座標を取得
-        Vector3 localPosition = transform.localPosition;
+        if (active)
+        {
+            // オブジェクトのローカル座標を取得
+            Vector3 localPosition = transform.localPosition;
 
-        if (Mathf.Abs(localPosition.x) < moveBackDistance)
-        {
-            // オブジェクトをローカル座標で後ろに下げる
-            MoveBack();
+            if (Mathf.Abs(localPosition.x) < moveBackDistance)
+            {
+                // オブジェクトをローカル座標で後ろに下げる
+                MoveBack();
+            }
+            else if (Mathf.Abs(localPosition.y) < moveUpDistance)
+            {
+                // オブジェクトをローカル座標で後ろに下げる
+                MoveUp();
+            }
         }
-        else if (Mathf.Abs(localPosition.y) < moveUpDistance)
-        {
-            // オブジェクトをローカル座標で後ろに下げる
-            MoveUp();
-        }
+
     }
 
     void MoveBack()// オブジェクトをローカル座標で後ろに下げる
@@ -44,5 +49,10 @@ public class PizaaMove : MonoBehaviour
     private void MoveUp()// オブジェクトをローカル座標で上に上げる
     {
         transform.Translate(Vector3.up * moveUpSpeed, Space.Self);
+    }
+
+    public void SetActive(bool active)
+    {
+        this.active = active;
     }
 }

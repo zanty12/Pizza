@@ -22,7 +22,7 @@ public class selectslice : MonoBehaviour
 
     public hand hand_;
 
-    public KnifeManager knife;
+    //public KnifeManager knife;
 
     private Dictionary<int, float> angles;
 
@@ -46,7 +46,10 @@ public class selectslice : MonoBehaviour
             { 7, 337.5f }
         };
         hand_.SetVisable(false);
-       
+        for(int i = 0; i < slices.Length; i++)
+        {
+            slices[slice].GetComponent<PizaaMove>().SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -64,10 +67,11 @@ public class selectslice : MonoBehaviour
                 {
                     slice = Random.Range(0, 7);
                 }
+                took[slice] = true;
                 //rotate hand
                 hand_.RotateHand(angles[slice]);
                 //cut the slice
-                StartCoroutine(knife.MoveRepeatedly());
+                //StartCoroutine(knife.MoveRepeatedly());
                 //show hand
                 hand_.SetVisable(true);
             }
@@ -94,7 +98,7 @@ public class selectslice : MonoBehaviour
 
         if (count == 6)
         {
-            //SceneManager.LoadScene(SceneName);
+            SceneManager.LoadScene("ResultScene");
         }
     }
 
@@ -111,6 +115,7 @@ public class selectslice : MonoBehaviour
             //reset timer
             cut_timer = 0.0f;
             //move the slice away
+            slices[slice].GetComponent<PizaaMove>().SetActive(true);
 
         }
     }
