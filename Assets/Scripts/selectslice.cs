@@ -22,6 +22,8 @@ public class selectslice : MonoBehaviour
 
     public hand hand_;
 
+    public KnifeManager knife;
+
     private Dictionary<int, float> angles;
 
     private bool waiting = false;
@@ -44,6 +46,7 @@ public class selectslice : MonoBehaviour
             { 7, 337.5f }
         };
         hand_.SetVisable(false);
+       
     }
 
     // Update is called once per frame
@@ -64,6 +67,7 @@ public class selectslice : MonoBehaviour
                 //rotate hand
                 hand_.RotateHand(angles[slice]);
                 //cut the slice
+                StartCoroutine(knife.MoveRepeatedly());
                 //show hand
                 hand_.SetVisable(true);
             }

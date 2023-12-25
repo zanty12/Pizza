@@ -16,7 +16,7 @@ public class KnifeManager : MonoBehaviour
         StartCoroutine(MoveRepeatedly());
     }
 
-    IEnumerator MoveRepeatedly()
+   public IEnumerator MoveRepeatedly()
     {
         while (!isKnifeEnd)
         {

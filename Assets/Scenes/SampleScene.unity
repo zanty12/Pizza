@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveInterval: 5
-  targetObject: {fileID: 659500898}
+  targetObject: {fileID: 132164967}
 --- !u!65 &182548136
 BoxCollider:
   m_ObjectHideFlags: 0
