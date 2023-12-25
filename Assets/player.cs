@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public CharacterController _controller;
+    public Collider _collider;
     public float _speed = 5.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         _controller = GetComponent<CharacterController>();
+        _collider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -26,5 +29,18 @@ public class Player : MonoBehaviour
         Vector3 velocity = direction * _speed;
         _controller.Move(velocity * Time.deltaTime);
 
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.CompareTag("slow"))
+        {
+            _speed = 2.0f;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        _speed = 5.0f; 
     }
 }
