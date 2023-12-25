@@ -16,6 +16,8 @@ public class KnifeManager : MonoBehaviour
     void Update()
     {
         Invoke("UpdateKnife", 3.0f);@// ŠÖ”‚ğ3•bŒã‚ÉÀs
+
+
     }
 
     private void UpdateKnife()
