@@ -1,36 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KnifeManager : MonoBehaviour
 {
-    private bool isKnufeEnd = false;
+    private bool isKnifeEnd = false;
+    public float moveInterval = 5.0f; // 動かす間隔（秒）
+    private float moveDistance = 20.0f; // 移動距離
+    private Vector3 initialPosition;
+    public Transform targetObject; // CylinderオブジェクトのTransform
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        initialPosition = transform.position;
+        StartCoroutine(MoveRepeatedly());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator MoveRepeatedly()
     {
-        Invoke("UpdateKnife", 3.0f);　// 関数を3秒後に実行
-
-
-    }
-
-    private void UpdateKnife()
-    {
-        if (isKnufeEnd == false)
+        while (!isKnifeEnd)
         {
-            transform.position += new Vector3(-20, 0, 0) * Time.deltaTime;//ナイフの移動
+            yield return new WaitForSeconds(moveInterval);
 
-            if (transform.position.x < -30.0f)
+            float timeElapsed = 0.0f;
+            Vector3 targetPosition = targetObject.position; // Cylinderオブジェクトの位置を取得
+
+            while (timeElapsed < moveInterval)
             {
-                transform.position = new Vector3(30, 0, 0);//位置のリセット
-                isKnufeEnd = true;
+                timeElapsed += Time.deltaTime;
+                transform.position = Vector3.Lerp(initialPosition, targetPosition, timeElapsed / moveInterval);
+                yield return null;
             }
+
+            transform.position = targetPosition;
+
+            yield return new WaitForSeconds(0.5f); // 移動終了後の待機時間
+
+            transform.position = initialPosition; // 初期位置に戻す
+
+            yield return null;
         }
+    }
+
+    public void UpdateMoveDistance(float newDistance)
+    {
+        moveDistance = newDistance;
     }
 }
