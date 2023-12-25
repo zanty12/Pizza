@@ -24,7 +24,7 @@ public class PizaaMove : MonoBehaviour
         // オブジェクトのローカル座標を取得
         Vector3 localPosition = transform.localPosition;
 
-        if (Mathf.Abs(localPosition.z) < moveBackDistance)
+        if (Mathf.Abs(localPosition.x) < moveBackDistance)
         {
             // オブジェクトをローカル座標で後ろに下げる
             MoveBack();
