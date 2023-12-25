@@ -15,9 +15,7 @@ public class KnifeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Invoke("UpdateKnife", 3.0f);　// 関数を3秒後に実行
-
     }
 
     private void UpdateKnife()
@@ -28,6 +26,7 @@ public class KnifeManager : MonoBehaviour
 
             if (transform.position.x < -30.0f)
             {
+                transform.position = new Vector3(30, 0, 0);//位置のリセット
                 isKnufeEnd = true;
             }
         }
