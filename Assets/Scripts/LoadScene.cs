@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class GameStartButton : MonoBehaviour
+public class LoadScene : MonoBehaviour
 {
     [SerializeField]
-    private string SceneName = "SampleScene";   // Scene–¼
+    private string SceneName;   // Scene–¼
 
     // ƒQ[ƒ€Scene‚ğƒ[ƒh‚·‚é
     public void OnRetry()
