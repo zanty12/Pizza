@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 
@@ -76,6 +77,20 @@ public class selectslice : MonoBehaviour
                 timer = 0.0f;
                 waiting = false;
             }
+        }
+        //if last slice, load scene
+        int count = 0;
+        for(int i = 0; i < took.Length; i++)
+        {
+            if (took[i])
+            {
+                count++;
+            }
+        }
+
+        if (count == 6)
+        {
+            //SceneManager.LoadScene(SceneName);
         }
     }
 
